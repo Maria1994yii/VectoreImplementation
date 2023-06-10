@@ -89,7 +89,15 @@ public:
 		return !(*this == other);
 	}
 
-
+        
+	void Function(int (*lambda)(int))
+	{
+		for(int i=0; i<m_size; ++i)
+		{
+		if (lambda(m_arr[i]))
+			std::cout << m_arr[i];
+		}
+	}
 	T& Front()
 	{
 		return m_arr[0];
@@ -240,18 +248,14 @@ int main()
 	arr.Insert(0, 6);
 	for (int i = 0; i < arr.size(); ++i)
 		arr.print_arr(i);
-
-	/*
-	Vector<int> vect;
-	vect.push_back(3);
-	vect.push_back(3);
-	vect.push_back(3);
-
-
-
-	for (int i = 0; i < arr.size(); ++i)
-		arr.print_arr(i);*/ // Error!! 
-
+	
+	std::cout << "\n";
+	auto Lambda = [](int number) {
+		return !(number % 2);
+	};
+	arr.Function(Lambda);  // even numbers for example
+	
+	
 }
 
 
